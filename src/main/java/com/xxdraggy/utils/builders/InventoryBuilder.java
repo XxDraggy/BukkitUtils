@@ -1,6 +1,6 @@
-package com.xxdraggy.utils.creator;
+package com.xxdraggy.utils.builders;
 
-import com.xxdraggy.utils.enums.InventoryType;
+import com.xxdraggy.utils.data.InventoryType;
 import com.xxdraggy.utils.inventory.InventoryController;
 import com.xxdraggy.utils.inventory.builders.InventoryDataBuilder;
 import com.xxdraggy.utils.inventory.builders.border.InventoryBorderBuilder;
@@ -35,6 +35,17 @@ public class InventoryBuilder {
                 .setItem(item)
                 .setSlot(slot)
                 .setClickCallBack(callBack)
+                .build()
+        );
+
+        return this;
+    }
+
+    public InventoryBuilder setItem(ItemStack item, int slot) {
+        this.builder.addItem((itemBuilder) -> itemBuilder
+                .setItem(item)
+                .setSlot(slot)
+                .setClickCallBack(player -> null)
                 .build()
         );
 
@@ -89,7 +100,7 @@ public class InventoryBuilder {
 
             // Bottom
             for (int i = 0; i < 1; i++)
-                inventory.setItem(i + (data.rows - 1) * 9, data.border.item);
+                inventory.setItem(i + ((data.rows - 1) * 9 + 1), data.border.item);
 
             // Left
             for (int slot = 0; slot < data.rows * 9; slot += 9)

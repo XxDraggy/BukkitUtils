@@ -1,6 +1,6 @@
 package com.xxdraggy.utils.inventory.builders;
 
-import com.xxdraggy.utils.enums.InventoryType;
+import com.xxdraggy.utils.data.InventoryType;
 import com.xxdraggy.utils.inventory.builders.border.InventoryBorderBuilder;
 import com.xxdraggy.utils.inventory.structures.InventoryData;
 import com.xxdraggy.utils.inventory.structures.InventoryItem;

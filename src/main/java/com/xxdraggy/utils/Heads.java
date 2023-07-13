@@ -1,4 +1,6 @@
-package com.xxdraggy.utils.heads;
+package com.xxdraggy.utils;
+
+import com.xxdraggy.utils.data.Head;
 
 public class Heads {
     public static class Animals {
@@ -1033,6 +1035,65 @@ public class Heads {
                 public static Head X = Head.OakLetterX;
                 public static Head Y = Head.OakLetterY;
                 public static Head Z = Head.OakLetterZ;
+
+                public static Head of(String letter) {
+                    switch (letter.toLowerCase()) {
+                        case "a":
+                            return Letter.A;
+                        case "b":
+                            return Letter.B;
+                        case "c":
+                            return Letter.C;
+                        case "d":
+                            return Letter.D;
+                        case "e":
+                            return Letter.E;
+                        case "f":
+                            return Letter.F;
+                        case "g":
+                            return Letter.G;
+                        case "h":
+                            return Letter.H;
+                        case "i":
+                            return Letter.I;
+                        case "j":
+                            return Letter.J;
+                        case "k":
+                            return Letter.K;
+                        case "l":
+                            return Letter.L;
+                        case "m":
+                            return Letter.M;
+                        case "n":
+                            return Letter.N;
+                        case "o":
+                            return Letter.O;
+                        case "p":
+                            return Letter.P;
+                        case "q":
+                            return Letter.Q;
+                        case "r":
+                            return Letter.R;
+                        case "s":
+                            return Letter.S;
+                        case "t":
+                            return Letter.T;
+                        case "u":
+                            return Letter.U;
+                        case "v":
+                            return Letter.V;
+                        case "w":
+                            return Letter.W;
+                        case "x":
+                            return Letter.X;
+                        case "y":
+                            return Letter.Y;
+                        case "z":
+                            return Letter.Z;
+                        default:
+                            return Letter.A;
+                    }
+                }
             }
 
             public static class Numbers {
@@ -1046,6 +1107,33 @@ public class Heads {
                 public static Head Eight = Head.OakNumber8;
                 public static Head Nine = Head.OakNumber9;
                 public static Head Zero = Head.OakNumber0;
+
+                public static Head of(String number) {
+                    switch (number) {
+                        case "1":
+                            return Numbers.One;
+                        case "2":
+                            return Numbers.Two;
+                        case "3":
+                            return Numbers.Three;
+                        case "4":
+                            return Numbers.Four;
+                        case "5":
+                            return Numbers.Five;
+                        case "6":
+                            return Numbers.Six;
+                        case "7":
+                            return Numbers.Seven;
+                        case "8":
+                            return Numbers.Eight;
+                        case "9":
+                            return Numbers.Nine;
+                        case "0":
+                            return Numbers.Zero;
+                        default:
+                            return Numbers.One;
+                    }
+                }
             }
 
             public static class Arrows {
@@ -1053,6 +1141,21 @@ public class Heads {
                 public static Head Down = Head.OakArrowDown;
                 public static Head Left = Head.OakArrowLeft;
                 public static Head Right = Head.OakArrowRight;
+
+                public static Head of(String number) {
+                    switch (number.toLowerCase()) {
+                        case "up":
+                            return Arrows.Up;
+                        case "down":
+                            return Arrows.Down;
+                        case "left":
+                            return Arrows.Left;
+                        case "right":
+                            return Arrows.Right;
+                        default:
+                            return Arrows.Up;
+                    }
+                }
             }
 
             public static Head Blank = Head.OakBlank;
@@ -1088,6 +1191,65 @@ public class Heads {
                 public static Head X = Head.StoneLetterX;
                 public static Head Y = Head.StoneLetterY;
                 public static Head Z = Head.StoneLetterZ;
+
+                public static Head of(String letter) {
+                    switch (letter.toLowerCase()) {
+                        case "a":
+                            return Letter.A;
+                        case "b":
+                            return Letter.B;
+                        case "c":
+                            return Letter.C;
+                        case "d":
+                            return Letter.D;
+                        case "e":
+                            return Letter.E;
+                        case "f":
+                            return Letter.F;
+                        case "g":
+                            return Letter.G;
+                        case "h":
+                            return Letter.H;
+                        case "i":
+                            return Letter.I;
+                        case "j":
+                            return Letter.J;
+                        case "k":
+                            return Letter.K;
+                        case "l":
+                            return Letter.L;
+                        case "m":
+                            return Letter.M;
+                        case "n":
+                            return Letter.N;
+                        case "o":
+                            return Letter.O;
+                        case "p":
+                            return Letter.P;
+                        case "q":
+                            return Letter.Q;
+                        case "r":
+                            return Letter.R;
+                        case "s":
+                            return Letter.S;
+                        case "t":
+                            return Letter.T;
+                        case "u":
+                            return Letter.U;
+                        case "v":
+                            return Letter.V;
+                        case "w":
+                            return Letter.W;
+                        case "x":
+                            return Letter.X;
+                        case "y":
+                            return Letter.Y;
+                        case "z":
+                            return Letter.Z;
+                        default:
+                            return Letter.A;
+                    }
+                }
             }
 
             public static class Numbers {
@@ -1101,6 +1263,33 @@ public class Heads {
                 public static Head Eight = Head.StoneNumber8;
                 public static Head Nine = Head.StoneNumber9;
                 public static Head Zero = Head.StoneNumber0;
+
+                public static Head of(String number) {
+                    switch (number) {
+                        case "1":
+                            return Numbers.One;
+                        case "2":
+                            return Numbers.Two;
+                        case "3":
+                            return Numbers.Three;
+                        case "4":
+                            return Numbers.Four;
+                        case "5":
+                            return Numbers.Five;
+                        case "6":
+                            return Numbers.Six;
+                        case "7":
+                            return Numbers.Seven;
+                        case "8":
+                            return Numbers.Eight;
+                        case "9":
+                            return Numbers.Nine;
+                        case "0":
+                            return Numbers.Zero;
+                        default:
+                            return Numbers.One;
+                    }
+                }
             }
 
             public static class Arrows {
@@ -1108,6 +1297,21 @@ public class Heads {
                 public static Head Down = Head.StoneArrowDown;
                 public static Head Left = Head.StoneArrowLeft;
                 public static Head Right = Head.StoneArrowRight;
+
+                public static Head of(String arrow) {
+                    switch (arrow.toLowerCase()) {
+                        case "up":
+                            return Arrows.Up;
+                        case "down":
+                            return Arrows.Down;
+                        case "left":
+                            return Arrows.Left;
+                        case "right":
+                            return Arrows.Right;
+                        default:
+                            return Arrows.Up;
+                    }
+                }
             }
 
             public static Head Blank = Head.StoneBlank;
@@ -1143,6 +1347,65 @@ public class Heads {
                 public static Head X = Head.QuartzLetterX;
                 public static Head Y = Head.QuartzLetterY;
                 public static Head Z = Head.QuartzLetterZ;
+
+                public static Head of(String letter) {
+                    switch (letter.toLowerCase()) {
+                        case "a":
+                            return Letter.A;
+                        case "b":
+                            return Letter.B;
+                        case "c":
+                            return Letter.C;
+                        case "d":
+                            return Letter.D;
+                        case "e":
+                            return Letter.E;
+                        case "f":
+                            return Letter.F;
+                        case "g":
+                            return Letter.G;
+                        case "h":
+                            return Letter.H;
+                        case "i":
+                            return Letter.I;
+                        case "j":
+                            return Letter.J;
+                        case "k":
+                            return Letter.K;
+                        case "l":
+                            return Letter.L;
+                        case "m":
+                            return Letter.M;
+                        case "n":
+                            return Letter.N;
+                        case "o":
+                            return Letter.O;
+                        case "p":
+                            return Letter.P;
+                        case "q":
+                            return Letter.Q;
+                        case "r":
+                            return Letter.R;
+                        case "s":
+                            return Letter.S;
+                        case "t":
+                            return Letter.T;
+                        case "u":
+                            return Letter.U;
+                        case "v":
+                            return Letter.V;
+                        case "w":
+                            return Letter.W;
+                        case "x":
+                            return Letter.X;
+                        case "y":
+                            return Letter.Y;
+                        case "z":
+                            return Letter.Z;
+                        default:
+                            return Letter.A;
+                    }
+                }
             }
 
             public static class Numbers {
@@ -1156,6 +1419,33 @@ public class Heads {
                 public static Head Eight = Head.QuartzNumber8;
                 public static Head Nine = Head.QuartzNumber9;
                 public static Head Zero = Head.QuartzNumber0;
+
+                public static Head of(String number) {
+                    switch (number) {
+                        case "1":
+                            return Numbers.One;
+                        case "2":
+                            return Numbers.Two;
+                        case "3":
+                            return Numbers.Three;
+                        case "4":
+                            return Numbers.Four;
+                        case "5":
+                            return Numbers.Five;
+                        case "6":
+                            return Numbers.Six;
+                        case "7":
+                            return Numbers.Seven;
+                        case "8":
+                            return Numbers.Eight;
+                        case "9":
+                            return Numbers.Nine;
+                        case "0":
+                            return Numbers.Zero;
+                        default:
+                            return Numbers.One;
+                    }
+                }
             }
 
             public static class Arrows {
@@ -1163,6 +1453,21 @@ public class Heads {
                 public static Head Down = Head.QuartzArrowDown;
                 public static Head Left = Head.QuartzArrowLeft;
                 public static Head Right = Head.QuartzArrowRight;
+
+                public static Head of(String arrow) {
+                    switch (arrow.toLowerCase()) {
+                        case "up":
+                            return Arrows.Up;
+                        case "down":
+                            return Arrows.Down;
+                        case "left":
+                            return Arrows.Left;
+                        case "right":
+                            return Arrows.Right;
+                        default:
+                            return Arrows.Up;
+                    }
+                }
             }
 
             public static Head Blank = Head.QuartzBlank;
@@ -1198,6 +1503,65 @@ public class Heads {
                 public static Head X = Head.BlackLetterX;
                 public static Head Y = Head.BlackLetterY;
                 public static Head Z = Head.BlackLetterZ;
+
+                public static Head of(String letter) {
+                    switch (letter.toLowerCase()) {
+                        case "a":
+                            return Letter.A;
+                        case "b":
+                            return Letter.B;
+                        case "c":
+                            return Letter.C;
+                        case "d":
+                            return Letter.D;
+                        case "e":
+                            return Letter.E;
+                        case "f":
+                            return Letter.F;
+                        case "g":
+                            return Letter.G;
+                        case "h":
+                            return Letter.H;
+                        case "i":
+                            return Letter.I;
+                        case "j":
+                            return Letter.J;
+                        case "k":
+                            return Letter.K;
+                        case "l":
+                            return Letter.L;
+                        case "m":
+                            return Letter.M;
+                        case "n":
+                            return Letter.N;
+                        case "o":
+                            return Letter.O;
+                        case "p":
+                            return Letter.P;
+                        case "q":
+                            return Letter.Q;
+                        case "r":
+                            return Letter.R;
+                        case "s":
+                            return Letter.S;
+                        case "t":
+                            return Letter.T;
+                        case "u":
+                            return Letter.U;
+                        case "v":
+                            return Letter.V;
+                        case "w":
+                            return Letter.W;
+                        case "x":
+                            return Letter.X;
+                        case "y":
+                            return Letter.Y;
+                        case "z":
+                            return Letter.Z;
+                        default:
+                            return Letter.A;
+                    }
+                }
             }
 
             public static class Numbers {
@@ -1211,6 +1575,33 @@ public class Heads {
                 public static Head Eight = Head.BlackNumber8;
                 public static Head Nine = Head.BlackNumber9;
                 public static Head Zero = Head.BlackNumber0;
+
+                public static Head of(String number) {
+                    switch (number) {
+                        case "1":
+                            return Numbers.One;
+                        case "2":
+                            return Numbers.Two;
+                        case "3":
+                            return Numbers.Three;
+                        case "4":
+                            return Numbers.Four;
+                        case "5":
+                            return Numbers.Five;
+                        case "6":
+                            return Numbers.Six;
+                        case "7":
+                            return Numbers.Seven;
+                        case "8":
+                            return Numbers.Eight;
+                        case "9":
+                            return Numbers.Nine;
+                        case "0":
+                            return Numbers.Zero;
+                        default:
+                            return Numbers.One;
+                    }
+                }
             }
 
             public static class Arrows {
@@ -1218,6 +1609,21 @@ public class Heads {
                 public static Head Down = Head.BlackArrowDown;
                 public static Head Left = Head.BlackArrowLeft;
                 public static Head Right = Head.BlackArrowRight;
+
+                public static Head of(String arrow) {
+                    switch (arrow.toLowerCase()) {
+                        case "up":
+                            return Arrows.Up;
+                        case "down":
+                            return Arrows.Down;
+                        case "left":
+                            return Arrows.Left;
+                        case "right":
+                            return Arrows.Right;
+                        default:
+                            return Arrows.Up;
+                    }
+                }
             }
 
             public static Head Blank = Head.BlackBlank;
@@ -1253,6 +1659,65 @@ public class Heads {
                 public static Head X = Head.RedLetterX;
                 public static Head Y = Head.RedLetterY;
                 public static Head Z = Head.RedLetterZ;
+
+                public static Head of(String letter) {
+                    switch (letter.toLowerCase()) {
+                        case "a":
+                            return Letter.A;
+                        case "b":
+                            return Letter.B;
+                        case "c":
+                            return Letter.C;
+                        case "d":
+                            return Letter.D;
+                        case "e":
+                            return Letter.E;
+                        case "f":
+                            return Letter.F;
+                        case "g":
+                            return Letter.G;
+                        case "h":
+                            return Letter.H;
+                        case "i":
+                            return Letter.I;
+                        case "j":
+                            return Letter.J;
+                        case "k":
+                            return Letter.K;
+                        case "l":
+                            return Letter.L;
+                        case "m":
+                            return Letter.M;
+                        case "n":
+                            return Letter.N;
+                        case "o":
+                            return Letter.O;
+                        case "p":
+                            return Letter.P;
+                        case "q":
+                            return Letter.Q;
+                        case "r":
+                            return Letter.R;
+                        case "s":
+                            return Letter.S;
+                        case "t":
+                            return Letter.T;
+                        case "u":
+                            return Letter.U;
+                        case "v":
+                            return Letter.V;
+                        case "w":
+                            return Letter.W;
+                        case "x":
+                            return Letter.X;
+                        case "y":
+                            return Letter.Y;
+                        case "z":
+                            return Letter.Z;
+                        default:
+                            return Letter.A;
+                    }
+                }
             }
 
             public static class Numbers {
@@ -1266,6 +1731,33 @@ public class Heads {
                 public static Head Eight = Head.RedNumber8;
                 public static Head Nine = Head.RedNumber9;
                 public static Head Zero = Head.RedNumber0;
+
+                public static Head of(String number) {
+                    switch (number) {
+                        case "1":
+                            return Numbers.One;
+                        case "2":
+                            return Numbers.Two;
+                        case "3":
+                            return Numbers.Three;
+                        case "4":
+                            return Numbers.Four;
+                        case "5":
+                            return Numbers.Five;
+                        case "6":
+                            return Numbers.Six;
+                        case "7":
+                            return Numbers.Seven;
+                        case "8":
+                            return Numbers.Eight;
+                        case "9":
+                            return Numbers.Nine;
+                        case "0":
+                            return Numbers.Zero;
+                        default:
+                            return Numbers.One;
+                    }
+                }
             }
 
             public static class Arrows {
@@ -1273,6 +1765,21 @@ public class Heads {
                 public static Head Down = Head.RedArrowDown;
                 public static Head Left = Head.RedArrowLeft;
                 public static Head Right = Head.RedArrowRight;
+
+                public static Head of(String arrow) {
+                    switch (arrow.toLowerCase()) {
+                        case "up":
+                            return Arrows.Up;
+                        case "down":
+                            return Arrows.Down;
+                        case "left":
+                            return Arrows.Left;
+                        case "right":
+                            return Arrows.Right;
+                        default:
+                            return Arrows.Up;
+                    }
+                }
             }
 
             public static Head Blank = Head.RedBlank;
@@ -1308,6 +1815,65 @@ public class Heads {
                 public static Head X = Head.GreenLetterX;
                 public static Head Y = Head.GreenLetterY;
                 public static Head Z = Head.GreenLetterZ;
+
+                public static Head of(String letter) {
+                    switch (letter.toLowerCase()) {
+                        case "a":
+                            return Letter.A;
+                        case "b":
+                            return Letter.B;
+                        case "c":
+                            return Letter.C;
+                        case "d":
+                            return Letter.D;
+                        case "e":
+                            return Letter.E;
+                        case "f":
+                            return Letter.F;
+                        case "g":
+                            return Letter.G;
+                        case "h":
+                            return Letter.H;
+                        case "i":
+                            return Letter.I;
+                        case "j":
+                            return Letter.J;
+                        case "k":
+                            return Letter.K;
+                        case "l":
+                            return Letter.L;
+                        case "m":
+                            return Letter.M;
+                        case "n":
+                            return Letter.N;
+                        case "o":
+                            return Letter.O;
+                        case "p":
+                            return Letter.P;
+                        case "q":
+                            return Letter.Q;
+                        case "r":
+                            return Letter.R;
+                        case "s":
+                            return Letter.S;
+                        case "t":
+                            return Letter.T;
+                        case "u":
+                            return Letter.U;
+                        case "v":
+                            return Letter.V;
+                        case "w":
+                            return Letter.W;
+                        case "x":
+                            return Letter.X;
+                        case "y":
+                            return Letter.Y;
+                        case "z":
+                            return Letter.Z;
+                        default:
+                            return Letter.A;
+                    }
+                }
             }
 
             public static class Numbers {
@@ -1321,6 +1887,33 @@ public class Heads {
                 public static Head Eight = Head.GreenNumber8;
                 public static Head Nine = Head.GreenNumber9;
                 public static Head Zero = Head.GreenNumber0;
+
+                public static Head of(String number) {
+                    switch (number) {
+                        case "1":
+                            return Numbers.One;
+                        case "2":
+                            return Numbers.Two;
+                        case "3":
+                            return Numbers.Three;
+                        case "4":
+                            return Numbers.Four;
+                        case "5":
+                            return Numbers.Five;
+                        case "6":
+                            return Numbers.Six;
+                        case "7":
+                            return Numbers.Seven;
+                        case "8":
+                            return Numbers.Eight;
+                        case "9":
+                            return Numbers.Nine;
+                        case "0":
+                            return Numbers.Zero;
+                        default:
+                            return Numbers.One;
+                    }
+                }
             }
 
             public static class Arrows {
@@ -1328,6 +1921,21 @@ public class Heads {
                 public static Head Down = Head.GreenArrowDown;
                 public static Head Left = Head.GreenArrowLeft;
                 public static Head Right = Head.GreenArrowRight;
+
+                public static Head of(String arrow) {
+                    switch (arrow.toLowerCase()) {
+                        case "up":
+                            return Arrows.Up;
+                        case "down":
+                            return Arrows.Down;
+                        case "left":
+                            return Arrows.Left;
+                        case "right":
+                            return Arrows.Right;
+                        default:
+                            return Arrows.Up;
+                    }
+                }
             }
 
             public static Head Blank = Head.GreenBlank;
@@ -1363,6 +1971,65 @@ public class Heads {
                 public static Head X = Head.BlueLetterX;
                 public static Head Y = Head.BlueLetterY;
                 public static Head Z = Head.BlueLetterZ;
+
+                public static Head of(String letter) {
+                    switch (letter.toLowerCase()) {
+                        case "a":
+                            return Letter.A;
+                        case "b":
+                            return Letter.B;
+                        case "c":
+                            return Letter.C;
+                        case "d":
+                            return Letter.D;
+                        case "e":
+                            return Letter.E;
+                        case "f":
+                            return Letter.F;
+                        case "g":
+                            return Letter.G;
+                        case "h":
+                            return Letter.H;
+                        case "i":
+                            return Letter.I;
+                        case "j":
+                            return Letter.J;
+                        case "k":
+                            return Letter.K;
+                        case "l":
+                            return Letter.L;
+                        case "m":
+                            return Letter.M;
+                        case "n":
+                            return Letter.N;
+                        case "o":
+                            return Letter.O;
+                        case "p":
+                            return Letter.P;
+                        case "q":
+                            return Letter.Q;
+                        case "r":
+                            return Letter.R;
+                        case "s":
+                            return Letter.S;
+                        case "t":
+                            return Letter.T;
+                        case "u":
+                            return Letter.U;
+                        case "v":
+                            return Letter.V;
+                        case "w":
+                            return Letter.W;
+                        case "x":
+                            return Letter.X;
+                        case "y":
+                            return Letter.Y;
+                        case "z":
+                            return Letter.Z;
+                        default:
+                            return Letter.A;
+                    }
+                }
             }
 
             public static class Numbers {
@@ -1376,6 +2043,33 @@ public class Heads {
                 public static Head Eight = Head.BlueNumber8;
                 public static Head Nine = Head.BlueNumber9;
                 public static Head Zero = Head.BlueNumber0;
+
+                public static Head of(String number) {
+                    switch (number) {
+                        case "1":
+                            return Numbers.One;
+                        case "2":
+                            return Numbers.Two;
+                        case "3":
+                            return Numbers.Three;
+                        case "4":
+                            return Numbers.Four;
+                        case "5":
+                            return Numbers.Five;
+                        case "6":
+                            return Numbers.Six;
+                        case "7":
+                            return Numbers.Seven;
+                        case "8":
+                            return Numbers.Eight;
+                        case "9":
+                            return Numbers.Nine;
+                        case "0":
+                            return Numbers.Zero;
+                        default:
+                            return Numbers.One;
+                    }
+                }
             }
 
             public static class Arrows {
@@ -1383,6 +2077,21 @@ public class Heads {
                 public static Head Down = Head.BlueArrowDown;
                 public static Head Left = Head.BlueArrowLeft;
                 public static Head Right = Head.BlueArrowRight;
+
+                public static Head of(String arrow) {
+                    switch (arrow.toLowerCase()) {
+                        case "up":
+                            return Arrows.Up;
+                        case "down":
+                            return Arrows.Down;
+                        case "left":
+                            return Arrows.Left;
+                        case "right":
+                            return Arrows.Right;
+                        default:
+                            return Arrows.Up;
+                    }
+                }
             }
 
             public static Head Blank = Head.BlueBlank;
@@ -1418,6 +2127,65 @@ public class Heads {
                 public static Head X = Head.YellowLetterX;
                 public static Head Y = Head.YellowLetterY;
                 public static Head Z = Head.YellowLetterZ;
+
+                public static Head of(String letter) {
+                    switch (letter.toLowerCase()) {
+                        case "a":
+                            return Letter.A;
+                        case "b":
+                            return Letter.B;
+                        case "c":
+                            return Letter.C;
+                        case "d":
+                            return Letter.D;
+                        case "e":
+                            return Letter.E;
+                        case "f":
+                            return Letter.F;
+                        case "g":
+                            return Letter.G;
+                        case "h":
+                            return Letter.H;
+                        case "i":
+                            return Letter.I;
+                        case "j":
+                            return Letter.J;
+                        case "k":
+                            return Letter.K;
+                        case "l":
+                            return Letter.L;
+                        case "m":
+                            return Letter.M;
+                        case "n":
+                            return Letter.N;
+                        case "o":
+                            return Letter.O;
+                        case "p":
+                            return Letter.P;
+                        case "q":
+                            return Letter.Q;
+                        case "r":
+                            return Letter.R;
+                        case "s":
+                            return Letter.S;
+                        case "t":
+                            return Letter.T;
+                        case "u":
+                            return Letter.U;
+                        case "v":
+                            return Letter.V;
+                        case "w":
+                            return Letter.W;
+                        case "x":
+                            return Letter.X;
+                        case "y":
+                            return Letter.Y;
+                        case "z":
+                            return Letter.Z;
+                        default:
+                            return Letter.A;
+                    }
+                }
             }
 
             public static class Numbers {
@@ -1431,6 +2199,33 @@ public class Heads {
                 public static Head Eight = Head.YellowNumber8;
                 public static Head Nine = Head.YellowNumber9;
                 public static Head Zero = Head.YellowNumber0;
+
+                public static Head of(String number) {
+                    switch (number) {
+                        case "1":
+                            return Numbers.One;
+                        case "2":
+                            return Numbers.Two;
+                        case "3":
+                            return Numbers.Three;
+                        case "4":
+                            return Numbers.Four;
+                        case "5":
+                            return Numbers.Five;
+                        case "6":
+                            return Numbers.Six;
+                        case "7":
+                            return Numbers.Seven;
+                        case "8":
+                            return Numbers.Eight;
+                        case "9":
+                            return Numbers.Nine;
+                        case "0":
+                            return Numbers.Zero;
+                        default:
+                            return Numbers.One;
+                    }
+                }
             }
 
             public static class Arrows {
@@ -1438,6 +2233,21 @@ public class Heads {
                 public static Head Down = Head.YellowArrowDown;
                 public static Head Left = Head.YellowArrowLeft;
                 public static Head Right = Head.YellowArrowRight;
+
+                public static Head of(String arrow) {
+                    switch (arrow.toLowerCase()) {
+                        case "up":
+                            return Arrows.Up;
+                        case "down":
+                            return Arrows.Down;
+                        case "left":
+                            return Arrows.Left;
+                        case "right":
+                            return Arrows.Right;
+                        default:
+                            return Arrows.Up;
+                    }
+                }
             }
 
             public static Head Blank = Head.YellowBlank;

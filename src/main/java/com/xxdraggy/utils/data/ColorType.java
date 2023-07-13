@@ -1,4 +1,4 @@
-package com.xxdraggy.utils.creator.text;
+package com.xxdraggy.utils.data;
 
 public enum ColorType {
     Gradient,

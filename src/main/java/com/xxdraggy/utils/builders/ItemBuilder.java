@@ -1,4 +1,4 @@
-package com.xxdraggy.utils.creator;
+package com.xxdraggy.utils.builders;
 
 import com.xxdraggy.utils.Creator;
 import org.bukkit.Material;

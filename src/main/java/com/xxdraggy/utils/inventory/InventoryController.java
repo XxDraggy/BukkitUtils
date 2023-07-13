@@ -1,6 +1,6 @@
 package com.xxdraggy.utils.inventory;
 
-import com.xxdraggy.utils.creator.InventoryBuilder;
+import com.xxdraggy.utils.builders.InventoryBuilder;
 import com.xxdraggy.utils.inventory.builders.InventoryDataBuilder;
 import com.xxdraggy.utils.inventory.structures.InventoryData;
 import org.bukkit.Bukkit;

@@ -1,6 +1,6 @@
 package com.xxdraggy.utils.inventory.structures;
 
-import com.xxdraggy.utils.enums.InventoryType;
+import com.xxdraggy.utils.data.InventoryType;
 import com.xxdraggy.utils.inventory.structures.border.InventoryBorder;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;

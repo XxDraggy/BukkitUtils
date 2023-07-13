@@ -1,4 +1,4 @@
-package com.xxdraggy.utils.heads;
+package com.xxdraggy.utils.data;
 
 public enum Category {
     Animal,

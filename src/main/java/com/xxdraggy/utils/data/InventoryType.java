@@ -1,4 +1,4 @@
-package com.xxdraggy.utils.enums;
+package com.xxdraggy.utils.data;
 
 public enum InventoryType {
     Chest(org.bukkit.event.inventory.InventoryType.CHEST),

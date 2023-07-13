@@ -1,4 +1,4 @@
-package com.xxdraggy.utils.creator.text;
+package com.xxdraggy.utils.data;
 
 public class TextPart {
     public TextPart() {}
@@ -14,7 +14,7 @@ public class TextPart {
 
     public boolean magic;
     public boolean underlined;
-    public boolean strikethrough;
+    public boolean stroke;
     public boolean bold;
     public boolean italic;
 }

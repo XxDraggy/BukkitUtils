@@ -3,7 +3,7 @@ package com.xxdraggy.utils.gradient;
 import com.xxdraggy.utils.gradient.exceptions.HomogeneousRainbowException;
 import com.xxdraggy.utils.gradient.exceptions.InvalidColourException;
 import com.xxdraggy.utils.gradient.exceptions.NumberRangeException;
-import com.xxdraggy.utils.creator.text.TextCreator;
+import com.xxdraggy.utils.builders.TextBuilder;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ public class GradientCreator {
         StringBuilder colourCodes = new StringBuilder();
 
         for (int i = 0; i < cols.size(); i++) {
-            String color = TextCreator.hexColor(cols.get(i));
+            String color = TextBuilder.hexColor(cols.get(i));
 
             colourCodes.append(color).append(text.charAt(i));
         }

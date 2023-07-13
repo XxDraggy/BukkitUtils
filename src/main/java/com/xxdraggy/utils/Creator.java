@@ -1,9 +1,9 @@
 package com.xxdraggy.utils;
 
-import com.xxdraggy.utils.creator.InventoryBuilder;
-import com.xxdraggy.utils.creator.ItemBuilder;
-import com.xxdraggy.utils.creator.text.TextCreator;
-import com.xxdraggy.utils.enums.BannerBaseColor;
+import com.xxdraggy.utils.builders.InventoryBuilder;
+import com.xxdraggy.utils.builders.ItemBuilder;
+import com.xxdraggy.utils.builders.TextBuilder;
+import com.xxdraggy.utils.data.BannerBaseColor;
 import com.xxdraggy.utils.gradient.GradientCreator;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -115,27 +115,27 @@ public class Creator {
         return finalText.toString();
     }
 
-    public static @NotNull TextCreator text(String text) {
-        return new TextCreator(text);
+    public static @NotNull TextBuilder text(String text) {
+        return new TextBuilder(text);
     }
-    public static @NotNull TextCreator text() {
-        return new TextCreator();
+    public static @NotNull TextBuilder text() {
+        return new TextBuilder();
     }
-    public static @NotNull String text(Function<TextCreator, TextCreator> creator) {
-        return creator.apply(new TextCreator()).toString();
+    public static @NotNull String text(Function<TextBuilder, TextBuilder> creator) {
+        return creator.apply(new TextBuilder()).toString();
     }
     public static @NotNull String text(String text, ChatColor color) {
-        return new TextCreator(text)
+        return new TextBuilder(text)
                 .color(color)
                 .toString();
     }
     public static @NotNull String text(String text, String hexColor) {
-        return new TextCreator(text)
+        return new TextBuilder(text)
                 .hex(hexColor)
                 .toString();
     }
     public static @NotNull String text(String text, int red, int green, int blue) {
-        return new TextCreator(text)
+        return new TextBuilder(text)
                 .rgb(red, green, blue)
                 .toString();
     }

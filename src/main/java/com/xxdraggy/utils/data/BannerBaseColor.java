@@ -1,4 +1,4 @@
-package com.xxdraggy.utils.enums;
+package com.xxdraggy.utils.data;
 
 public enum BannerBaseColor {
     BLACK,

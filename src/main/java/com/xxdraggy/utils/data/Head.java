@@ -1,4 +1,4 @@
-package com.xxdraggy.utils.heads;
+package com.xxdraggy.utils.data;
 
 import me.tigahz.headlibrary.builders.HeadBuilder;
 import org.bukkit.inventory.ItemStack;

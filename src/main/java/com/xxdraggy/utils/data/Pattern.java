@@ -1,4 +1,4 @@
-package com.xxdraggy.utils.enums;
+package com.xxdraggy.utils.data;
 
 import org.bukkit.DyeColor;
 import org.bukkit.block.banner.PatternType;
