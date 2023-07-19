@@ -9,10 +9,10 @@ import java.util.function.Function;
 public class BackButtonBuilder {
     private BackButton data = new BackButton();
 
-    public BackButton remove() {
+    public BackButtonBuilder remove() {
         data.use = false;
 
-        return build();
+        return this;
     }
 
     public BackButtonBuilder setItem(ItemStack item) {

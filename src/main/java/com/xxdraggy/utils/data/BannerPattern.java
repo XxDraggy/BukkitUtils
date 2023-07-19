@@ -3,7 +3,7 @@ package com.xxdraggy.utils.data;
 import org.bukkit.DyeColor;
 import org.bukkit.block.banner.PatternType;
 
-public enum Pattern {
+public enum BannerPattern {
     SQUARE_BOTTOM_LEFT(PatternType.SQUARE_BOTTOM_LEFT),
     SQUARE_BOTTOM_RIGHT(PatternType.SQUARE_BOTTOM_RIGHT),
     SQUARE_TOP_LEFT(PatternType.SQUARE_TOP_LEFT),
@@ -45,7 +45,7 @@ public enum Pattern {
     GLOBE(PatternType.GLOBE),
     PIGLIN(PatternType.PIGLIN);
 
-    Pattern(PatternType type) {
+    BannerPattern(PatternType type) {
         this.WHITE = new org.bukkit.block.banner.Pattern(DyeColor.WHITE, type);
         this.ORANGE = new org.bukkit.block.banner.Pattern(DyeColor.ORANGE, type);
         this.MAGENTA = new org.bukkit.block.banner.Pattern(DyeColor.MAGENTA, type);

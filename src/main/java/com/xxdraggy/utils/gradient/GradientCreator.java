@@ -20,7 +20,7 @@ public class GradientCreator {
         StringBuilder colourCodes = new StringBuilder();
 
         for (int i = 0; i < cols.size(); i++) {
-            String color = TextBuilder.hexColor(cols.get(i));
+            String color = TextBuilder.hexColor(cols.get(i)).toString();
 
             colourCodes.append(color).append(text.charAt(i));
         }

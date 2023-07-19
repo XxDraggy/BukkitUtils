@@ -3,10 +3,7 @@ package com.xxdraggy.utils.inventory.builders.border;
 import com.xxdraggy.utils.inventory.builders.border.buttons.BackButtonBuilder;
 import com.xxdraggy.utils.inventory.builders.border.buttons.CloseButtonBuilder;
 import com.xxdraggy.utils.inventory.builders.border.buttons.ProceedButtonBuilder;
-import com.xxdraggy.utils.inventory.structures.border.buttons.BackButton;
-import com.xxdraggy.utils.inventory.structures.border.buttons.CloseButton;
 import com.xxdraggy.utils.inventory.structures.border.InventoryBorder;
-import com.xxdraggy.utils.inventory.structures.border.buttons.ProceedButton;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.function.Function;
@@ -32,20 +29,26 @@ public class InventoryBorderBuilder {
         return this;
     }
 
-    public InventoryBorderBuilder setProceedButton(Function<ProceedButtonBuilder, ProceedButton> proceedButton) {
-        this.data.proceedButton = proceedButton.apply(new ProceedButtonBuilder());
+    public InventoryBorderBuilder setProceedButton(Function<ProceedButtonBuilder, ProceedButtonBuilder> builder) {
+        this.data.proceedButton = builder.apply(
+                new ProceedButtonBuilder()
+        ).build();
 
         return this;
     }
 
-    public InventoryBorderBuilder setBackButton(Function<BackButtonBuilder, BackButton> backButton) {
-        this.data.backButton = backButton.apply(new BackButtonBuilder());
+    public InventoryBorderBuilder setBackButton(Function<BackButtonBuilder, BackButtonBuilder> builder) {
+        this.data.backButton = builder.apply(
+                new BackButtonBuilder()
+        ).build();
 
         return this;
     }
 
-    public InventoryBorderBuilder setCloseButton(Function<CloseButtonBuilder, CloseButton> closeButton) {
-        this.data.closeButton = closeButton.apply(new CloseButtonBuilder());
+    public InventoryBorderBuilder setCloseButton(Function<CloseButtonBuilder, CloseButtonBuilder> builder) {
+        this.data.closeButton = builder.apply(
+                new CloseButtonBuilder()
+        ).build();
 
         return this;
     }

@@ -7,6 +7,6 @@ import java.util.function.Function;
 
 public class InventoryItem {
     public ItemStack item;
-    public Function<Player, Void> clickCallBack;
+    public Function<Player, Void> callback;
     public int slot;
 }

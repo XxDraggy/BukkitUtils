@@ -15,8 +15,8 @@ public class InventoryItemBuilder {
         return this;
     }
 
-    public InventoryItemBuilder setClickCallBack(Function<Player, Void> callBack) {
-        this.data.clickCallBack = callBack;
+    public InventoryItemBuilder setCallback(Function<Player, Void> callback) {
+        this.data.callback = callback;
 
         return this;
     }

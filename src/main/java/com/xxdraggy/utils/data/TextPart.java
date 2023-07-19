@@ -1,5 +1,7 @@
 package com.xxdraggy.utils.data;
 
+import com.xxdraggy.utils.data.color.ColorType;
+
 public class TextPart {
     public TextPart() {}
 

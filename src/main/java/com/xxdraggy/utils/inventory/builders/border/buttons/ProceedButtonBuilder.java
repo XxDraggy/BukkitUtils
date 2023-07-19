@@ -9,10 +9,10 @@ import java.util.function.Function;
 public class ProceedButtonBuilder {
     private ProceedButton data = new ProceedButton();
 
-    public ProceedButton remove() {
+    public ProceedButtonBuilder remove() {
         data.use = false;
 
-        return build();
+        return this;
     }
 
     public ProceedButtonBuilder setItem(ItemStack item) {

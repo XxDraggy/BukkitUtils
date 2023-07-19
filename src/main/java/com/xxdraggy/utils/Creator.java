@@ -2,11 +2,13 @@ package com.xxdraggy.utils;
 
 import com.xxdraggy.utils.builders.InventoryBuilder;
 import com.xxdraggy.utils.builders.ItemBuilder;
+import com.xxdraggy.utils.builders.PagedInventoryBuilder;
 import com.xxdraggy.utils.builders.TextBuilder;
-import com.xxdraggy.utils.data.BannerBaseColor;
+import com.xxdraggy.utils.data.color.BannerBaseColor;
 import com.xxdraggy.utils.gradient.GradientCreator;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.entity.Player;
@@ -14,7 +16,6 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -25,6 +26,9 @@ public class Creator {
     public static @NotNull ItemBuilder item() {
         return new ItemBuilder();
     }
+    public static @NotNull ItemBuilder item(ItemStack item) {
+        return new ItemBuilder(item);
+    }
     public static @NotNull ItemStack item(Function<ItemBuilder, ItemBuilder> creator) {
         return creator.apply(new ItemBuilder()).build();
     }
@@ -34,34 +38,25 @@ public class Creator {
     public static @NotNull ItemStack item(Material type, int amount) {
         return new ItemStack(type, amount);
     }
-    public static @NotNull ItemStack item(Material type, String name) {
-        ItemStack item = Creator.item(type, 1);
-
-        ItemMeta meta = item.getItemMeta();
-
-        meta.setDisplayName(name);
-
-        item.setItemMeta(meta);
-
-        return item;
+    public static @NotNull ItemStack item(Material material, String name) {
+        return Creator.item()
+                .setMaterial(material)
+                .setName(name)
+                .build();
     }
-    public static @NotNull ItemStack item(Material type, String name, int amount) {
-        ItemStack item = Creator.item(type, amount);
-
-        ItemMeta meta = item.getItemMeta();
-
-        meta.setDisplayName(name);
-
-        item.setItemMeta(meta);
-
-        return item;
+    public static @NotNull ItemStack item(Material material, String name, int amount) {
+        return Creator.item()
+                .setMaterial(material)
+                .setName(name)
+                .setAmount(amount)
+                .build();
     }
 
     public static @NotNull InventoryBuilder inventory() {
         return new InventoryBuilder();
     }
-    public static @NotNull Inventory inventory(Function<InventoryBuilder, Inventory> creator) {
-        return creator.apply(new InventoryBuilder());
+    public static @NotNull Inventory inventory(Function<InventoryBuilder, Inventory> builder) {
+        return builder.apply(new InventoryBuilder());
     }
     public static @NotNull Inventory inventory(Player holder, InventoryType type) {
         return Bukkit.createInventory(holder, type);
@@ -74,6 +69,16 @@ public class Creator {
     }
     public static @NotNull Inventory inventory(Player holder, String name, int rows) {
         return Bukkit.createInventory(holder, rows*9, name);
+    }
+
+    public static @NotNull PagedInventoryBuilder pagedInventory() {
+        return new PagedInventoryBuilder();
+    }
+    public static @NotNull Inventory pagedInventory(Function<PagedInventoryBuilder, Inventory> builder) {
+        return builder.apply(new PagedInventoryBuilder());
+    }
+    public static @NotNull PagedInventoryBuilder pagedInventory(InventoryBuilder... builders) {
+        return new PagedInventoryBuilder();
     }
 
     public static @NotNull String gradient(String text, String ...colors) {
@@ -132,6 +137,11 @@ public class Creator {
     public static @NotNull String text(String text, String hexColor) {
         return new TextBuilder(text)
                 .hex(hexColor)
+                .toString();
+    }
+    public static @NotNull String text(String text, Color color) {
+        return new TextBuilder(text)
+                .color(color)
                 .toString();
     }
     public static @NotNull String text(String text, int red, int green, int blue) {

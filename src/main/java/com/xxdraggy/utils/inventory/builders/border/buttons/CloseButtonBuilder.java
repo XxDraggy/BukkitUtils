@@ -9,10 +9,10 @@ import java.util.function.Function;
 public class CloseButtonBuilder {
     private CloseButton data = new CloseButton();
 
-    public CloseButton remove() {
+    public CloseButtonBuilder remove() {
         data.use = false;
 
-        return build();
+        return this;
     }
 
     public CloseButtonBuilder setItem(ItemStack item) {

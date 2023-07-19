@@ -1,7 +1,6 @@
 package com.xxdraggy.utils.inventory.builders;
 
 import com.xxdraggy.utils.data.InventoryType;
-import com.xxdraggy.utils.inventory.builders.border.InventoryBorderBuilder;
 import com.xxdraggy.utils.inventory.structures.InventoryData;
 import com.xxdraggy.utils.inventory.structures.InventoryItem;
 import com.xxdraggy.utils.inventory.structures.border.InventoryBorder;
@@ -37,20 +36,26 @@ public class InventoryDataBuilder {
         return this;
     }
 
-    public InventoryDataBuilder addItem(Function<InventoryItemBuilder, InventoryItem> item) {
-        this.data.items.add(item.apply(new InventoryItemBuilder()));
+    public InventoryDataBuilder addItem(InventoryItem item) {
+        this.data.items.add(item);
 
         return this;
     }
 
-    public InventoryDataBuilder setBorder(Function<InventoryBorderBuilder, InventoryBorder> border) {
-        this.data.border = border.apply(new InventoryBorderBuilder());
+    public InventoryDataBuilder setBorder(InventoryBorder border) {
+        this.data.border = border;
 
         return this;
     }
 
     public InventoryDataBuilder setInventory(Inventory inventory) {
         this.data.inventory = inventory;
+
+        return this;
+    }
+
+    public InventoryDataBuilder addPage(Function<InventoryDataBuilder, InventoryDataBuilder> builder) {
+        this.data.pages.add(builder.apply(new InventoryDataBuilder()).build());
 
         return this;
     }

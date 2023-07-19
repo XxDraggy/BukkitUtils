@@ -1,12 +1,14 @@
 package com.xxdraggy.utils.inventories;
 
+import com.google.common.base.Preconditions;
 import com.xxdraggy.utils.Creator;
 import com.xxdraggy.utils.Heads;
 import com.xxdraggy.utils.builders.InventoryBuilder;
 import com.xxdraggy.utils.data.InventoryType;
-import org.bukkit.Material;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -32,9 +34,13 @@ public class NumberSelector {
             .toString();
 
     private Map<Integer, Integer> numbers = new HashMap<>();
-    private final Map<Integer, Boolean> set = new HashMap<>();
+    private String maximum = "9999999";
+    private String[] defaults = (String[]) Arrays.asList("0", "0", "0", "0", "0", "0", "0").toArray();
+    private Player player;
 
     public NumberSelector setNumberCount(int count) {
+        Preconditions.checkArgument(count > 0 && count <= 7, "Count must be between 0 and 7!");
+
         this.count = count;
 
         return this;
@@ -58,6 +64,18 @@ public class NumberSelector {
         return this;
     }
 
+    public NumberSelector setMaximum(String maximum) {
+        this.maximum = maximum;
+
+        return this;
+    }
+
+    public NumberSelector setDefaultNumber(String defaultNumber) {
+        this.defaults = defaultNumber.split("");
+
+        return this;
+    }
+
     private InventoryBuilder builder = new InventoryBuilder()
             .setTitle(title)
             .setType(InventoryType.Container)
@@ -65,85 +83,86 @@ public class NumberSelector {
             .setBorder((borderBuilder) -> borderBuilder
                     .setBackButton(backButtonBuilder -> backButtonBuilder
                             .setCallBack(back)
-                            .build()
                     )
                     .setProceedButton(proceedButtonBuilder -> proceedButtonBuilder
                             .setCallBack(player -> {
-                                String nums = "";
+                                StringBuilder number = new StringBuilder();
 
                                 for (int i = 0; i < count; i++) {
-                                    nums += numbers.get(i);
+                                    number.append(numbers.get(i));
                                 }
 
-                                proceed.apply(player, nums);
+                                if(Integer.parseInt(number.toString()) > Integer.parseInt(maximum)) {
+                                    player.sendMessage(Creator.text("Number too large!! " + maximum + " is the maximum", ChatColor.RED));
+
+                                    for (int i = 0; i < count; i++)
+                                        set(player, i, maximum.split("")[i], 26 - count);
+                                }
+                                else
+                                    proceed.apply(player, number.toString());
 
                                 return null;
                             })
-                            .build()
                     )
-                    .build()
             );
 
     public InventoryBuilder create() {
         for (int i = 0; i < count; i++) {
             final int count = i;
-            final int numberSlot = 26 - count;
+            final int slot = 26 - count;
 
             numbers.put(i, 0);
-            set.put(i, false);
 
             final Function<Player, Void> upCallback = player -> {
                 int currentNumber = numbers.get(count);
 
                 if(currentNumber == 9) {
-                    builder.setItem(Heads.Letters.Quartz.Numbers.Zero.getHead(), numberSlot);
-                    numbers.put(count, 0);
-                    player.openInventory(builder.build(player));
+                    set(player, count, "0", slot);
                 }
                 else {
-                    builder.setItem(Heads.Letters.Quartz.Numbers.of("" + count).getHead(), numberSlot);
-                    numbers.put(count, currentNumber + 1);
-                    player.openInventory(builder.build(player));
+                    set(player, count, "" + (currentNumber + 1), slot);
                 }
 
                 return null;
             };
-            builder.setItem(Heads.Letters.Quartz.Arrows.Up.getHead(), 17 - count, upCallback);
+            builder.setItem(inventoryItemBuilder -> inventoryItemBuilder
+                    .setItem(Heads.Letters.Quartz.Arrows.Up.getHead())
+                    .setSlot(17 - count)
+                    .setCallback(upCallback)
+            );
 
             Function<Player, Void> downCallback = player -> {
                 int currentNumber = numbers.get(count);
 
                 if(currentNumber == 0) {
-                    builder.setItem(Heads.Letters.Quartz.Numbers.Nine.getHead(), numberSlot);
-                    numbers.put(count, 9);
-                    player.openInventory(builder.build(player));
+                    set(player, count, "9", slot);
                 }
                 else {
-                    builder.setItem(Heads.Letters.Quartz.Numbers.of("" + count).getHead(), numberSlot);
-                    numbers.put(count, currentNumber - 1);
-                    player.openInventory(builder.build(player));
+                    set(player, count, "" + (currentNumber - 1), slot);
                 }
 
                 return null;
             };
-            builder.setItem(Heads.Letters.Quartz.Arrows.Down.getHead(), 35 - count, downCallback);
-
-            builder.setItem(Heads.Letters.Quartz.Numbers.Zero.getHead(), 26 - count, player -> {
-                final boolean isSet = set.get(count);
-
-                if(isSet) {
-                    builder.setItem(Creator.item(Material.AIR), 17 - count);
-                    builder.setItem(Creator.item(Material.AIR), 35 - count);
-                }
-                else {
-                    builder.setItem(Heads.Letters.Quartz.Arrows.Up.getHead(), 17 - count, upCallback);
-                    builder.setItem(Heads.Letters.Quartz.Arrows.Down.getHead(), 26 - count, downCallback);
-                }
-
-                return null;
-            });
+            builder.setItem(inventoryItemBuilder -> inventoryItemBuilder
+                    .setItem(Heads.Letters.Quartz.Arrows.Down.getHead())
+                    .setSlot(35 - count)
+                    .setCallback(downCallback)
+            );
         }
 
         return builder;
+    }
+
+    private Void set(Player player, int index, String value, int slot) {
+        builder.setItem(itemBuilder -> itemBuilder
+                .setItem(Heads.Letters.Quartz.Numbers.of(value).getHead())
+                .setSlot(slot)
+        );
+
+        numbers.put(index, Integer.valueOf(value));
+
+        player.openInventory(builder.build(player));
+
+        return null;
     }
 }

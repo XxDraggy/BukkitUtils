@@ -10,13 +10,11 @@ public class InventoryListener implements Listener {
         if(event.getSlotType() == InventoryType.SlotType.OUTSIDE) return;
 
         InventoryController.inventories.forEach(inventoryData -> {
-            event.setCancelled(true);
-            Player player = (Player) event.getWhoClicked();
 
             if(event.getClickedInventory() == inventoryData.inventory) {
-                int slot = event.getRawSlot();
+                event.setCancelled(true);
 
-                inventoryData.items.get(slot).clickCallBack.apply(player);
+                inventoryData.items.get(event.getRawSlot()).callback.apply((Player) event.getWhoClicked());
             }
         });
     }

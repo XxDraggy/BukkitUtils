@@ -1,6 +1,6 @@
 package com.xxdraggy.utils;
 
-import com.xxdraggy.utils.data.Head;
+import com.xxdraggy.utils.data.head.Head;
 
 public class Heads {
     public static class Animals {

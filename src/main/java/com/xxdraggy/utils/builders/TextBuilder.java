@@ -2,7 +2,10 @@ package com.xxdraggy.utils.builders;
 
 import com.xxdraggy.utils.Creator;
 import com.xxdraggy.utils.data.TextPart;
-import com.xxdraggy.utils.data.ColorType;
+import com.xxdraggy.utils.data.color.ArgbColor;
+import com.xxdraggy.utils.data.color.ColorObject;
+import com.xxdraggy.utils.data.color.ColorType;
+import com.xxdraggy.utils.data.color.RgbColor;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 
@@ -10,9 +13,15 @@ public class TextBuilder {
     private TextPart part;
 
     public TextBuilder() {}
-
     public TextBuilder(String text) {
         part = new TextPart(text);
+    }
+    private TextBuilder(TextPart part) {
+        this.part = part;
+    }
+
+    public TextBuilder clone() {
+        return new TextBuilder(part);
     }
 
     public TextBuilder setText(String text) {
@@ -170,6 +179,13 @@ public class TextBuilder {
         return this;
     }
 
+    public TextBuilder color(Color color) {
+        this.part.colorType = ColorType.OneColor;
+        this.part.color = color.toString();
+
+        return this;
+    }
+
     public TextBuilder rgb(int red, int green, int blue) {
         this.part.colorType = ColorType.OneColor;
         this.part.color = Color.fromRGB(red, green, blue).toString();
@@ -186,7 +202,7 @@ public class TextBuilder {
 
     public TextBuilder hex(String hexColor) {
         this.part.colorType = ColorType.OneColor;
-        this.part.color = TextBuilder.hexColor(hexColor);
+        this.part.color = TextBuilder.hexColor(hexColor).toString();
 
         return this;
     }
@@ -205,14 +221,36 @@ public class TextBuilder {
         return this;
     }
 
-    public static String hexColor(String hexColor) {
-        return Color.fromRGB(
-                Integer.valueOf(hexColor.substring( 1, 3 ), 16 ),
-                Integer.valueOf(hexColor.substring( 3, 5 ), 16 ),
-                Integer.valueOf(hexColor.substring( 5, 7 ), 16 )
-        ).toString();
+    public static ColorObject hexColor(String hexColor) {
+        Color object = Color.fromRGB(
+                Integer.valueOf(hexColor.substring(1, 3), 16 ),
+                Integer.valueOf(hexColor.substring(3, 5), 16 ),
+                Integer.valueOf(hexColor.substring(5, 7), 16 )
+        );
+
+        return new ColorObject(object.toString(), object);
     }
 
+    public static ColorObject rgbColor(RgbColor rgb) {
+        Color object = Color.fromRGB(
+                rgb.getRed(),
+                rgb.getGreen(),
+                rgb.getBlue()
+        );
+
+        return new ColorObject(object.toString(), object);
+    }
+
+    public static ColorObject argbColor(ArgbColor argb) {
+        Color object = Color.fromARGB(
+                argb.getAlpha(),
+                argb.getRed(),
+                argb.getGreen(),
+                argb.getBlue()
+        );
+
+        return new ColorObject(object.toString(), object);
+    }
 
     public String toString() {
         return TextBuilder.toString(this.part);
