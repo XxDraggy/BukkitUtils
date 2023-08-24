@@ -7,50 +7,31 @@ import com.comphenix.protocol.events.PacketEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.BiPredicate;
+import java.util.logging.Level;
 
-public final class InputController {
-    static Plugin plugin;
+public class InputController {
+    static JavaPlugin plugin;
 
-    static Map<Player, InputGui> currentInputs;
+    static Map<Player, InputGui> currentInputs = new HashMap<>();
 
-    public static void register(Plugin plugin) {
+    public static void register(JavaPlugin plugin) {
         InputController.plugin = plugin;
 
-        currentInputs = new HashMap<>();
+        if(InputController.isInstalled()) {
+            InputController.listen();
 
-        InputController.listen();
-    }
-
-    public static void open(Player player, List<String> defaultLines, boolean reopenOnFail, BiPredicate<Player, String[]> callback) {
-        new InputGui(defaultLines, reopenOnFail, callback)
-                .open(player);
-    }
-    public static void open(Player player, boolean reopenOnFail, BiPredicate<Player, String[]> callback) {
-        new InputGui(Arrays.asList(""), reopenOnFail, callback)
-                .open(player);
+            Bukkit.getLogger().log(Level.INFO, "[BukkitUtils/InputController] Registered listener!");
+        }
+        else
+            Bukkit.getLogger().log(Level.SEVERE, "[BukkitUtils/InputController] Could not find ProtocolLib in the plugin folder.\nPlease install it from https://github.com/dmulloy2/ProtocolLib/releases/download/5.0.0/ProtocolLib.jar");
     }
 
-    @Contract(" -> new")
-    public static @NotNull InputGuiBuilder createGui() {
-        return new InputGuiBuilder();
-    }
-
-    @Contract("_, _, _ -> new")
-    public static @NotNull InputGui createGui(List<String> defaultLines, boolean reopenOnFail, BiPredicate<Player, String[]> callback) {
-        return new InputGui(defaultLines, reopenOnFail, callback);
-    }
-    @Contract("_, _ -> new")
-    public static @NotNull InputGui createGui(boolean reopenOnFail, BiPredicate<Player, String[]> callback) {
-        return new InputGui(Arrays.asList(""), reopenOnFail, callback);
+    public static boolean isInstalled() {
+        return ProtocolLibrary.getProtocolManager() != null;
     }
 
     static void listen() {

@@ -1,21 +1,28 @@
 package com.xxdraggy.utils.inventory;
 
+import com.xxdraggy.utils.data.inventory.InventoryData;
+import com.xxdraggy.utils.data.inventory.InventoryItem;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 
 public class InventoryListener implements Listener {
-    public void InventoryClickEvent(InventoryClickEvent event) {
+    @EventHandler
+    public void inventoryClick(InventoryClickEvent event) {
         if(event.getSlotType() == InventoryType.SlotType.OUTSIDE) return;
 
-        InventoryController.inventories.forEach(inventoryData -> {
+        InventoryData inventory = InventoryController.inventories.get(event.getClickedInventory());
 
-            if(event.getClickedInventory() == inventoryData.inventory) {
-                event.setCancelled(true);
+        if(inventory == null) return;
 
-                inventoryData.items.get(event.getRawSlot()).callback.apply((Player) event.getWhoClicked());
-            }
-        });
+        event.setCancelled(true);
+
+        InventoryItem item = inventory.getItems().get(event.getRawSlot());
+
+        if(item == null) return;
+
+        item.call(event.getClick(), (Player) event.getWhoClicked());
     }
 }

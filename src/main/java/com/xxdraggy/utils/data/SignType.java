@@ -1,4 +1,4 @@
-package com.xxdraggy.utils.input;
+package com.xxdraggy.utils.data;
 
 import org.bukkit.Material;
 
@@ -20,6 +20,13 @@ public enum SignType {
         this.block = block;
     }
 
-    Material block;
-    String id;
+    private Material block;
+    public Material getBlock() {
+        return block;
+    }
+
+    private String id;
+    public String getId() {
+        return id;
+    }
 }

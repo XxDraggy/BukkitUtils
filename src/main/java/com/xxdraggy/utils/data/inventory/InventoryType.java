@@ -1,4 +1,4 @@
-package com.xxdraggy.utils.data;
+package com.xxdraggy.utils.data.inventory;
 
 public enum InventoryType {
     Chest(org.bukkit.event.inventory.InventoryType.CHEST),
@@ -33,10 +33,13 @@ public enum InventoryType {
     Container();
 
     InventoryType(org.bukkit.event.inventory.InventoryType type) {
-        this.type = type;
+        this.bukkit = type;
     }
 
     InventoryType() {}
 
-    public org.bukkit.event.inventory.InventoryType type;
+    private org.bukkit.event.inventory.InventoryType bukkit;
+    public org.bukkit.event.inventory.InventoryType getBukkit() {
+        return bukkit;
+    }
 }

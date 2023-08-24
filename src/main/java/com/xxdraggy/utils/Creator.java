@@ -1,14 +1,16 @@
 package com.xxdraggy.utils;
 
-import com.xxdraggy.utils.builders.InventoryBuilder;
+import com.xxdraggy.utils.builders.InputBuilder;
 import com.xxdraggy.utils.builders.ItemBuilder;
-import com.xxdraggy.utils.builders.PagedInventoryBuilder;
-import com.xxdraggy.utils.builders.TextBuilder;
+import com.xxdraggy.utils.builders.inventory.InventoryBuilder;
+import com.xxdraggy.utils.builders.inventory.PagedInventoryBuilder;
+import com.xxdraggy.utils.builders.text.TextBuilder;
 import com.xxdraggy.utils.data.color.BannerBaseColor;
+import com.xxdraggy.utils.data.color.ColorObject;
 import com.xxdraggy.utils.gradient.GradientCreator;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.entity.Player;
@@ -33,22 +35,19 @@ public class Creator {
         return creator.apply(new ItemBuilder()).build();
     }
     public static @NotNull ItemStack item(Material type) {
-        return Creator.item(type, 1);
+        return new ItemStack(type);
     }
     public static @NotNull ItemStack item(Material type, int amount) {
         return new ItemStack(type, amount);
     }
-    public static @NotNull ItemStack item(Material material, String name) {
-        return Creator.item()
-                .setMaterial(material)
+    public static @NotNull ItemStack item(Material type, String name) {
+        return Creator.item(Creator.item(type))
                 .setName(name)
                 .build();
     }
-    public static @NotNull ItemStack item(Material material, String name, int amount) {
-        return Creator.item()
-                .setMaterial(material)
+    public static @NotNull ItemStack item(Material type, String name, int amount) {
+        return Creator.item(Creator.item(type, amount))
                 .setName(name)
-                .setAmount(amount)
                 .build();
     }
 
@@ -81,11 +80,32 @@ public class Creator {
         return new PagedInventoryBuilder();
     }
 
-    public static @NotNull String gradient(String text, String ...colors) {
+    public static @NotNull TextComponent gradient(String text, TextComponent component, String ...colors) {
+        return GradientCreator.generateGradient(text, component, colors);
+    }
+    public static @NotNull TextComponent gradient(String text, String ...colors) {
         return GradientCreator.generateGradient(text, colors);
     }
+    public static @NotNull TextComponent gradient(String text, TextComponent component, ColorObject...colors) {
+        String[] hexColors = new String[colors.length];
 
-    public static @NotNull String rainbow(String text) {
+        for (int i = 0; i < colors.length; i++) {
+            hexColors[i] = colors[i].getHex();
+        }
+
+        return GradientCreator.generateGradient(text, component, hexColors);
+    }
+    public static @NotNull TextComponent gradient(String text, ColorObject ...colors) {
+        String[] hexColors = new String[colors.length];
+
+        for (int i = 0; i < colors.length; i++) {
+            hexColors[i] = colors[i].getHex();
+        }
+
+        return GradientCreator.generateGradient(text, hexColors);
+    }
+
+    public static @NotNull TextComponent rainbow(String text, TextComponent component) {
         ArrayList<ChatColor> rainbowColors = new ArrayList<>();
         rainbowColors.add(ChatColor.DARK_RED);
         rainbowColors.add(ChatColor.RED);
@@ -99,25 +119,56 @@ public class Creator {
         rainbowColors.add(ChatColor.DARK_PURPLE);
         rainbowColors.add(ChatColor.LIGHT_PURPLE);
 
-        StringBuilder finalText = new StringBuilder();
-
         int colorIndex = 0;
 
         for (int i = 0; i < text.length(); i++) {
-            char letter = text.charAt(i);
+            TextComponent newComponent = new TextComponent();
 
-            if (colorIndex >= rainbowColors.toArray().length) {
+            if (colorIndex >= rainbowColors.toArray().length)
                 colorIndex = 0;
-            }
 
-            String color = rainbowColors.get(colorIndex).toString();
+            newComponent.setText(text.charAt(i) + "");
+            newComponent.setColor(rainbowColors.get(colorIndex));
 
-            finalText.append(color).append(letter);
+            component.addExtra(newComponent);
 
             colorIndex++;
         }
 
-        return finalText.toString();
+        return component;
+    }
+    public static @NotNull TextComponent rainbow(String text) {
+        ArrayList<ChatColor> rainbowColors = new ArrayList<>();
+        TextComponent component = new TextComponent();
+        rainbowColors.add(ChatColor.DARK_RED);
+        rainbowColors.add(ChatColor.RED);
+        rainbowColors.add(ChatColor.GOLD);
+        rainbowColors.add(ChatColor.YELLOW);
+        rainbowColors.add(ChatColor.GREEN);
+        rainbowColors.add(ChatColor.DARK_GREEN);
+        rainbowColors.add(ChatColor.DARK_AQUA);
+        rainbowColors.add(ChatColor.AQUA);
+        rainbowColors.add(ChatColor.DARK_BLUE);
+        rainbowColors.add(ChatColor.DARK_PURPLE);
+        rainbowColors.add(ChatColor.LIGHT_PURPLE);
+
+        int colorIndex = 0;
+
+        for (int i = 0; i < text.length(); i++) {
+            TextComponent newComponent = new TextComponent();
+
+            if (colorIndex >= rainbowColors.toArray().length)
+                colorIndex = 0;
+
+            newComponent.setText(text.charAt(i) + "");
+            newComponent.setColor(rainbowColors.get(colorIndex));
+
+            component.addExtra(newComponent);
+
+            colorIndex++;
+        }
+
+        return component;
     }
 
     public static @NotNull TextBuilder text(String text) {
@@ -130,18 +181,14 @@ public class Creator {
         return creator.apply(new TextBuilder()).toString();
     }
     public static @NotNull String text(String text, ChatColor color) {
-        return new TextBuilder(text)
-                .color(color)
-                .toString();
+        return color + text;
+    }
+    public static @NotNull String text(String text, org.bukkit.ChatColor color) {
+        return color + text;
     }
     public static @NotNull String text(String text, String hexColor) {
         return new TextBuilder(text)
                 .hex(hexColor)
-                .toString();
-    }
-    public static @NotNull String text(String text, Color color) {
-        return new TextBuilder(text)
-                .color(color)
                 .toString();
     }
     public static @NotNull String text(String text, int red, int green, int blue) {
@@ -149,7 +196,6 @@ public class Creator {
                 .rgb(red, green, blue)
                 .toString();
     }
-
 
     public static @NotNull ItemStack banner(BannerBaseColor baseColor) {
         return Creator.banner(baseColor, (Pattern) null);
@@ -197,6 +243,13 @@ public class Creator {
         banner.setItemMeta(bannerMeta);
 
         return banner;
+    }
+
+    public static @NotNull InputBuilder input() {
+        return new InputBuilder();
+    }
+    public static @NotNull InputBuilder input(Function<InputBuilder, InputBuilder> builder) {
+        return builder.apply(new InputBuilder());
     }
 }
 

@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 public class ItemBuilder {
@@ -18,7 +19,7 @@ public class ItemBuilder {
     private ItemMeta meta;
 
     public ItemBuilder() {
-        item = Creator.item(Material.AIR);
+        item = Creator.item(Material.DIAMOND_BLOCK);
         meta = item.getItemMeta();
     }
 
@@ -44,6 +45,11 @@ public class ItemBuilder {
     
     public ItemBuilder setLore(String ...lore) {
         meta.setLore(Arrays.asList(lore));
+
+        return this;
+    }
+    public ItemBuilder setLore(List<String> lore) {
+        meta.setLore(lore);
 
         return this;
     }

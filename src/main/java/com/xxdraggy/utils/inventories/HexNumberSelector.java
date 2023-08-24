@@ -3,12 +3,12 @@ package com.xxdraggy.utils.inventories;
 import com.google.common.base.Preconditions;
 import com.xxdraggy.utils.Creator;
 import com.xxdraggy.utils.Heads;
-import com.xxdraggy.utils.builders.InventoryBuilder;
-import com.xxdraggy.utils.data.InventoryType;
+import com.xxdraggy.utils.builders.inventory.InventoryBuilder;
+import com.xxdraggy.utils.data.inventory.InventoryType;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -17,24 +17,22 @@ import java.util.function.Function;
 public class HexNumberSelector {
     private int count = 5;
 
-    private Function<Player, Void> back = (player -> {
-        player.closeInventory();
-        return null;
-    });
+    private Function<Player, Object> backCallback = player -> null;
 
-    private BiFunction<Player, String, Void> proceed = (player, nums) -> {
-        player.closeInventory();
-        return null;
-    };
+    private BiFunction<Player, String, Object> callback = (player, nums) -> null;
 
-    private String title = Creator.text("Choose your number")
-            .gold()
-            .bold()
-            .underline()
-            .toString();
+    private String title = "Choose your number";
 
     private Map<Integer, String> numbers = new HashMap<>();
-    private String[] defaults = (String[]) Arrays.asList("0", "0", "0", "0", "0", "0", "0").toArray();
+    private String[] defaults = new String[] {
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+    };
 
     public HexNumberSelector setNumberCount(int count) {
         Preconditions.checkArgument(count > 0 && count <= 7, "Count must be between 0 and 7!");
@@ -43,47 +41,42 @@ public class HexNumberSelector {
 
         return this;
     }
-
-    public HexNumberSelector setBackCallback(Function<Player, Void> back) {
-        this.back = back;
-
-        return this;
-    }
-
-    public HexNumberSelector setProceedCallback(BiFunction<Player, String, Void> proceed) {
-        this.proceed = proceed;
+    public HexNumberSelector setBackCallback(Function<Player, Object> backCallback) {
+        this.backCallback = backCallback;
 
         return this;
     }
+    public HexNumberSelector setCallback(BiFunction<Player, String, Object> callback) {
+        this.callback = callback;
 
+        return this;
+    }
     public HexNumberSelector setTitle(String title) {
         this.title = title;
 
         return this;
     }
-
-    public HexNumberSelector setDefaultNumber(String defaultNumber) {
-        this.defaults = defaultNumber.split("");
+    public HexNumberSelector setDefaultNumber(Function<Object, String> defaultNumber) {
+        this.defaults = defaultNumber.apply("").split("");
 
         return this;
     }
 
     private InventoryBuilder builder = new InventoryBuilder()
-            .setTitle(title)
             .setType(InventoryType.Container)
             .setRows(5)
             .setBorder((borderBuilder) -> borderBuilder
-                    .setBackButton(backButtonBuilder -> backButtonBuilder
-                            .setCallBack(back)
+                    .setBackButton(backButton -> backButton
+                            .setCallback(player -> backCallback.apply(player))
                     )
-                    .setProceedButton(proceedButtonBuilder -> proceedButtonBuilder
-                            .setCallBack(player -> {
+                    .setProceedButton(proceedButton -> proceedButton
+                            .setCallback(player -> {
                                 StringBuilder number = new StringBuilder();
 
                                 for (int i = 0; i < count; i++)
-                                    number.append(numbers.get(number.length() - 1 - i));
+                                    number.append(numbers.get(i));
 
-                                proceed.apply(player, number.toString());
+                                callback.apply(player, number.toString());
 
                                 return null;
                             })
@@ -91,39 +84,50 @@ public class HexNumberSelector {
             );
 
     public InventoryBuilder create() {
+        builder.setTitle(title);
+
         for (int i = 0; i < count; i++) {
             final int count = i;
-            final int slot = 26 - count;
+            final int slot = 19 + count;
 
-            numbers.put(i, "0");
+            numbers.put(i, defaults[i]);
 
-            final Function<Player, Void> upCallback = player -> {
+            final Function<Player, Object> upCallback = player -> {
                 String nextNumber = add(numbers.get(count));
-
-                numbers.put(count, nextNumber);
 
                 set(player, count, nextNumber, slot);
 
                 return null;
             };
             builder.setItem(itemBuilder -> itemBuilder
-                    .setItem(Heads.Letters.Quartz.Arrows.Up.getHead())
-                    .setSlot(35 - count)
+                    .setItem(
+                            Creator.item(Heads.Letters.Quartz.Arrows.Up.getHead())
+                                    .setName(Creator.text("Plus", ChatColor.GRAY))
+                                    .build()
+                    )
+                    .setSlot(10 + count)
                     .setCallback(upCallback)
             );
 
-            final Function<Player, Void> downCallback = player -> {
-                String nextNumber = subtract(numbers.get(count));
+            builder.setItem(inventoryItemBuilder -> inventoryItemBuilder
+                    .setItem(getHead(numbers.get(count)))
+                    .setSlot(slot)
+            );
 
-                numbers.put(count, nextNumber);
+            final Function<Player, Object> downCallback = player -> {
+                String nextNumber = subtract(numbers.get(count));
 
                 set(player, count, nextNumber, slot);
 
                 return null;
             };
             builder.setItem(itemBuilder -> itemBuilder
-                    .setItem(Heads.Letters.Quartz.Arrows.Down.getHead())
-                    .setSlot(35 - count)
+                    .setItem(
+                            Creator.item(Heads.Letters.Quartz.Arrows.Down.getHead())
+                                    .setName(Creator.text("Minus", ChatColor.GRAY))
+                                    .build()
+                    )
+                    .setSlot(28 + count)
                     .setCallback(downCallback)
             );
         }
@@ -179,7 +183,6 @@ public class HexNumberSelector {
             }
         }
     }
-
     private String subtract(String num) {
         try {
             Integer.parseInt(num);
@@ -224,18 +227,20 @@ public class HexNumberSelector {
             }
         }
     }
-
     private ItemStack getHead(String num) {
         try {
             Integer.parseInt(num);
 
-            return Heads.Letters.Quartz.Numbers.of("" + num).getHead();
+            return Creator.item(Heads.Letters.Quartz.Numbers.of("" + num).getHead())
+                    .setName(Creator.text(Heads.Letters.Quartz.Numbers.of("" + num).name(), ChatColor.GRAY))
+                    .build();
         }
         catch (NumberFormatException error) {
-            return Heads.Letters.Quartz.Letter.of("" + num).getHead();
+            return Creator.item(Heads.Letters.Quartz.Letter.of("" + num).getHead())
+                    .setName(Creator.text(Heads.Letters.Quartz.Letter.of("" + num).name(), ChatColor.GRAY))
+                    .build();
         }
     }
-
     private void set(Player player, int index, String value, int slot) {
         builder.setItem(inventoryItemBuilder -> inventoryItemBuilder
                 .setItem(getHead(value))
@@ -245,6 +250,5 @@ public class HexNumberSelector {
         numbers.put(index, value);
 
         player.openInventory(builder.build(player));
-
     }
 }

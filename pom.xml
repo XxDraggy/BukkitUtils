@@ -65,10 +65,6 @@
             <id>dmulloy2-repo</id>
             <url>https://repo.dmulloy2.net/nexus/repository/public/</url>
         </repository>
-        <repository>
-            <id>headlibrary</id>
-            <url>https://github.com/Tigahz/HeadLibrary.git</url>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -76,12 +72,6 @@
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.20-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.comphenix.protocol</groupId>
-            <artifactId>ProtocolLib</artifactId>
-            <version>4.5.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -94,6 +84,12 @@
             <groupId>me.tigahz</groupId>
             <artifactId>headlibrary</artifactId>
             <version>5.2.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>5.1.0</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

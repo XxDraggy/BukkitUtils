@@ -504,9 +504,9 @@ public class Heads {
             public static Head Orange = Head.Orange;
         }
 
-        public static class Grey {
-            public static Head Light = Head.LightGrey;
-            public static Head Grey = Head.Grey;
+        public static class Gray {
+            public static Head Light = Head.LightGray;
+            public static Head Gray = Head.Gray;
         }
 
         public static Head Cream = Head.Cream;

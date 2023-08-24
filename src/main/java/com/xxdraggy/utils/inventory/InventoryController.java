@@ -1,24 +1,24 @@
 package com.xxdraggy.utils.inventory;
 
-import com.xxdraggy.utils.builders.InventoryBuilder;
-import com.xxdraggy.utils.inventory.builders.InventoryDataBuilder;
-import com.xxdraggy.utils.inventory.structures.InventoryData;
+import com.xxdraggy.utils.data.inventory.InventoryData;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
 
 public class InventoryController {
-    static List<InventoryData> inventories;
+    static Map<Inventory, InventoryData> inventories = new HashMap<>();
 
     public static void register(JavaPlugin plugin) {
-        Bukkit.getServer().getPluginManager().registerEvents(new InventoryListener(), plugin);
+        Bukkit.getPluginManager().registerEvents(new InventoryListener(), plugin);
+
+        Bukkit.getLogger().log(Level.INFO, "[BukkitUtils/InventoryController] Registered listener!");
     }
 
-    public static Inventory registerInventory(InventoryDataBuilder builder) {
-        InventoryController.inventories.add(builder.build());
-
-        return InventoryBuilder.build(builder);
+    public static void addInventory(InventoryData builder) {
+        InventoryController.inventories.put(builder.getInventory(), builder);
     }
 }

@@ -346,8 +346,8 @@ public enum Head {
     Mokka(HeadCategory.Color, "Mokka", "bad5983dcabc931ab6a49d2fb8879ebc5295cb5ba2f278e3c8a3da7bc8b478"),
     Brown(HeadCategory.Color, "Brown", "4574a467737295bd9ddc82545a1a4e146a943d05ecc821f9cc6a543ffe9934a"),
     White(HeadCategory.Color, "White", "e5a770e7e44b3a1e6c3b83a97ff6997b1f5b26550e9d7aa5d5021a0c2b6ee"),
-    LightGrey(HeadCategory.Color, "Light Grey", "31c45a59550143a44ed4e87ce2955e4a13e94cdfd4c64dee881dfb48dd92e"),
-    Grey(HeadCategory.Color, "Grey", "f2f085c6b3cb228e5ba81df562c4786762f3c257127e9725c77b7fd301d37"),
+    LightGray(HeadCategory.Color, "Light Gray", "31c45a59550143a44ed4e87ce2955e4a13e94cdfd4c64dee881dfb48dd92e"),
+    Gray(HeadCategory.Color, "Gray", "f2f085c6b3cb228e5ba81df562c4786762f3c257127e9725c77b7fd301d37"),
     Black(HeadCategory.Color, "Black", "9ddebbb062f6a385a91ca05f18f5c0acbe33e2d06ee9e7416cef6ee43dfe2fb"),
 
     AirFreshener(HeadCategory.Decoration, "Air Freshener", "2a74ac4d1f9cbd107d4aa858a232c44915579aaca32aa2af95459fca0aac9b"),
