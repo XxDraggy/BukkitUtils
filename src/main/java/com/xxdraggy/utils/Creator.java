@@ -1,5 +1,6 @@
 package com.xxdraggy.utils;
 
+import com.xxdraggy.utils.builders.CommandBuilder;
 import com.xxdraggy.utils.builders.InputBuilder;
 import com.xxdraggy.utils.builders.ItemBuilder;
 import com.xxdraggy.utils.builders.inventory.InventoryBuilder;
@@ -13,6 +14,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
@@ -22,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class Creator {
@@ -250,6 +253,18 @@ public class Creator {
     }
     public static @NotNull InputBuilder input(Function<InputBuilder, InputBuilder> builder) {
         return builder.apply(new InputBuilder());
+    }
+
+    public static @NotNull CommandBuilder command() {
+        return new CommandBuilder();
+    }
+    public static @NotNull CommandBuilder command(Function<CommandBuilder, CommandBuilder> builder) {
+        return builder.apply(new CommandBuilder());
+    }
+    public static @NotNull Void command(String command, BiFunction<CommandSender, String[], Boolean> executor) {
+        Creator.command().setCommand(command).setExecutor(executor).register();
+
+        return null;
     }
 }
 
