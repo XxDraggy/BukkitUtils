@@ -1,11 +1,13 @@
 package com.xxdraggy.utils;
 
-import com.xxdraggy.utils.builders.CommandBuilder;
+import com.xxdraggy.utils.builders.command.CommandBuilder;
 import com.xxdraggy.utils.builders.InputBuilder;
 import com.xxdraggy.utils.builders.ItemBuilder;
+import com.xxdraggy.utils.builders.command.SubCommandBuilder;
 import com.xxdraggy.utils.builders.inventory.InventoryBuilder;
 import com.xxdraggy.utils.builders.inventory.PagedInventoryBuilder;
 import com.xxdraggy.utils.builders.text.TextBuilder;
+import com.xxdraggy.utils.data.CommandData;
 import com.xxdraggy.utils.data.color.BannerBaseColor;
 import com.xxdraggy.utils.data.color.ColorObject;
 import com.xxdraggy.utils.gradient.GradientCreator;
@@ -261,10 +263,23 @@ public class Creator {
     public static @NotNull CommandBuilder command(Function<CommandBuilder, CommandBuilder> builder) {
         return builder.apply(new CommandBuilder());
     }
+    public static @NotNull CommandBuilder command(String command) {
+        return Creator.command().setCommand(command);
+    }
     public static @NotNull Void command(String command, BiFunction<CommandSender, String[], Boolean> executor) {
         Creator.command().setCommand(command).setExecutor(executor).register();
 
         return null;
+    }
+
+    public static @NotNull SubCommandBuilder subCommand() {
+        return new SubCommandBuilder();
+    }
+    public static @NotNull SubCommandBuilder subCommand(String command) {
+        return Creator.subCommand().setCommand(command);
+    }
+    public static @NotNull CommandData subCommand(String command, BiFunction<CommandSender, String[], Boolean> executor) {
+        return Creator.subCommand().setCommand(command).setExecutor(executor).getData();
     }
 }
 
